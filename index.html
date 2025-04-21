@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Hour Detox Masterclass</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="masterclass-header">
+            <h1>1 Hour Detox Masterclass</h1>
+            <a href="#registrationForm" class="register-button">Register Now</a>
+            
+            <div class="class-details">
+                <h2>Class Details</h2>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">Date:</span>
+                        <span class="detail-value">3 May 2025</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Time:</span>
+                        <span class="detail-value">8:00 PM - 9:00 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Language:</span>
+                        <span class="detail-value">Hindi</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Duration:</span>
+                        <span class="detail-value">1 Hour</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="countdown-card">
+                <h2>Class Starts In</h2>
+                <div class="countdown-timer">
+                    <div class="countdown-item">
+                        <span id="days">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefits-section">
+                <h2>BENEFITS YOU'LL EXPERIENCE</h2>
+                <p class="benefits-subtitle">when you detox your body</p>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <img src="img/img1.webp" alt="Elimination of Toxins">
+                        <h3>Elimination of Toxins</h3>
+                    </div>
+                    <div class="benefit-card">
+                        <img src="img/img2.webp" alt="Natural Weight control">
+                        <h3>Natural Weight control</h3>
+                    </div>
+                    <div class="benefit-card">
+                        <img src="img/img3.webp" alt="Clearer, Glowing Skin">
+                        <h3>Clearer, Glowing Skin</h3>
+                    </div>
+                    <div class="benefit-card">
+                        <img src="img/img4.webp" alt="Stronger Immune System">
+                        <h3>Stronger Immune System</h3>
+                    </div>
+                    <div class="benefit-card">
+                        <img src="img/img5.webp" alt="Better Focus & Productivity">
+                        <h3>Better Focus & Productivity</h3>
+                    </div>
+                    <div class="benefit-card">
+                        <img src="img/img6.webp" alt="Get Increased Confidence">
+                        <h3>Get Increased Confidence</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-profile">
+                <div class="doctor-image">
+                    <img src="img/dr.jpg" alt="Dr. Reshma Sayyed">
+                </div>
+                <div class="doctor-info">
+                    <h2>Dr. Reshma Sayyed</h2>
+                    <p class="designation">Founder – Herbal Remedy Center</p>
+                    
+                    <div class="doctor-description">
+                        <p>Dr. Reshma Sayyed is a renowned naturopath, healer, health educator, and entrepreneur, dedicated to holistic wellness since 2019. Her journey began with personal health challenges, which she overcame using natural methods rooted in traditional Indian wisdom.</p>
+                        
+                        <p>Since then, she has made it her mission to empower people with natural healing tools that detox the body and bring deep inner transformation.</p>
+                        
+                        <div class="achievements">
+                            <div class="achievement">
+                                <h3>Leadership Award 2023</h3>
+                                <p>Honored by Harbhajan Singh for remarkable contribution to wellness and community health</p>
+                            </div>
+                            <div class="achievement">
+                                <h3>Mahila Udyami Award 2024</h3>
+                                <p>Received from Smriti Irani ji for inspiring work in women entrepreneurship and health empowerment</p>
+                            </div>
+                        </div>
+                        
+                        <p class="experience">With active work in naturopathy since 2019, she has impacted thousands of lives through her clinics, webinars, and customized healing programs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number (with WhatsApp) *</label>
+                <input type="tel" id="mobile" name="mobile" required>
+            </div>
+
+            <div class="form-group">
+                <label for="city">City / Location *</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender *</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ageGroup">Age Group *</label>
+                <select id="ageGroup" name="ageGroup" required>
+                    <option value="">Select Age Group</option>
+                    <option value="below20">Below 20</option>
+                    <option value="21-30">21–30</option>
+                    <option value="31-40">31–40</option>
+                    <option value="41-50">41–50</option>
+                    <option value="51above">51 and above</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Health Concerns / Issues You're Facing *</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="healthIssues" value="weightGain"> Weight gain</label>
+                    <label><input type="checkbox" name="healthIssues" value="fatigue"> Fatigue / Low energy</label>
+                    <label><input type="checkbox" name="healthIssues" value="hormonal"> Hormonal imbalance</label>
+                    <label><input type="checkbox" name="healthIssues" value="pcos"> Ovarian cyst / PCOD / PCOS</label>
+                    <label><input type="checkbox" name="healthIssues" value="periods"> Irregular periods</label>
+                    <label><input type="checkbox" name="healthIssues" value="skin"> Skin problems (acne, pigmentation, dullness)</label>
+                    <label><input type="checkbox" name="healthIssues" value="hair"> Hair fall</label>
+                    <label><input type="checkbox" name="healthIssues" value="bloating"> Bloating / Acidity / Constipation</label>
+                    <label><input type="checkbox" name="healthIssues" value="emotional"> Emotional imbalance / Mood swings</label>
+                    <label><input type="checkbox" name="healthIssues" value="sciatic"> Sciatic pain</label>
+                    <label><input type="checkbox" name="healthIssues" value="brain"> Brain fog / Weak memory</label>
+                    <label><input type="checkbox" name="healthIssues" value="thyroid"> Thyroid problems</label>
+                    <label><input type="checkbox" name="healthIssues" value="blood"> High or low blood pressure</label>
+                    <label><input type="checkbox" name="healthIssues" value="other"> Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="otherIssues">Other Issues (if any)</label>
+                <textarea id="otherIssues" name="otherIssues" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="source">How did you hear about this webinar? *</label>
+                <select id="source" name="source" required>
+                    <option value="">Select Source</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="friend">Friend/Family</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Would you like to join our exclusive WhatsApp group for webinar updates? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="whatsappGroup" value="yes" required checked> Yes</label>
+                </div>
+            </div>
+
+            <div id="paymentSection">
+                <div class="form-group">
+                    <h2 class="payment-title">Complete Your Registration</h2>
+                    <p class="payment-subtitle">Please make the payment of ₹99 to join the WhatsApp group</p>
+                    
+                    <div class="payment-methods">
+                        <div class="upi-payment">
+                            <h3>Pay Using UPI</h3>
+                            <div class="upi-id-container">
+                                <p class="upi-id-label">UPI ID:</p>
+                                <p class="upi-id">reshmsayyed025-3@okicici</p>
+                                <p class="upi-amount">Amount: ₹99</p>
+                            </div>
+                            <div class="payment-buttons">
+                                <a href="upi://pay?pa=reshmsayyed025-3@okicici&pn=Reshma%20Sayyed&am=99&cu=INR" class="pay-button">Pay with UPI Apps</a>
+                                <a href="tez://upi/pay?pa=reshmsayyed025-3@okicici&pn=Reshma%20Sayyed&am=99&cu=INR" class="pay-button gpay">Pay with Google Pay</a>
+                                <a href="phonepe://pay?pa=reshmsayyed025-3@okicici&pn=Reshma%20Sayyed&am=99&cu=INR" class="pay-button phonepe">Pay with PhonePe</a>
+                                <a href="paytmmp://pay?pa=reshmsayyed025-3@okicici&pn=Reshma%20Sayyed&am=99&cu=INR" class="pay-button paytm">Pay with Paytm</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn">Submit Form</button>
+        </form>
+
+        <div id="thankYouMessage" style="display: none;">
+            <h2>Thank you for registering!</h2>
+            <p>Please click the link below to join our WhatsApp group and stay updated about the webinar.</p>
+            <a href="#" id="whatsappLink" class="whatsapp-button">Join WhatsApp Group</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
