@@ -724,7 +724,7 @@ textarea {
     color: #4CAF50;
 }
 
-/* Add responsive styles for header */
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .logo {
         height: 60px;
