@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('registrationForm');
     const thankYouMessage = document.getElementById('thankYouMessage');
     const whatsappLink = document.getElementById('whatsappLink');
+    const submitBtn = document.getElementById('submitBtn');
 
     // WhatsApp Configuration
     const ADMIN_WHATSAPP = '919519931355'; // Admin number with country code
@@ -68,6 +69,27 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
+        // Check if payment is completed
+        if (!localStorage.getItem('paymentCompleted')) {
+            // Show payment section
+            document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth' });
+            
+            // Show payment required message
+            const paymentMessage = document.createElement('div');
+            paymentMessage.className = 'payment-required-message';
+            paymentMessage.innerHTML = '<p style="color: #e74c3c; text-align: center; margin-top: 10px;">Please complete the payment to proceed with registration.</p>';
+            
+            // Remove any existing message
+            const existingMessage = document.querySelector('.payment-required-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Add the message after payment section
+            document.getElementById('paymentSection').appendChild(paymentMessage);
+            return;
+        }
+
         // Collect form data
         const formData = new FormData(form);
         const data = {};
@@ -85,12 +107,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Store form data in localStorage for after payment
         localStorage.setItem('registrationData', JSON.stringify(data));
 
-        // Show payment section
-        document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth' });
+        // Show thank you message and group link
+        showThankYouMessage();
     });
 
     // Handle payment completion
     function handlePaymentCompletion() {
+        // Mark payment as completed
+        localStorage.setItem('paymentCompleted', 'true');
+        
         const registrationData = localStorage.getItem('registrationData');
         if (registrationData) {
             const data = JSON.parse(registrationData);
@@ -107,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Clear stored data
             localStorage.removeItem('registrationData');
+            localStorage.removeItem('paymentCompleted');
         }
     }
 
@@ -114,12 +140,24 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.pay-button').forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
+            
             // Store payment method in localStorage
             localStorage.setItem('paymentMethod', this.textContent);
-            // Open payment link
-            window.location.href = this.href;
-            // Set up payment completion check
-            setTimeout(handlePaymentCompletion, 5000); // Check after 5 seconds
+            
+            // Store the current URL to return after payment
+            localStorage.setItem('returnUrl', window.location.href);
+            
+            // Open payment link in new tab
+            const paymentWindow = window.open(this.href, '_blank');
+            
+            // Check for payment completion every 2 seconds
+            const paymentCheck = setInterval(() => {
+                if (paymentWindow.closed) {
+                    clearInterval(paymentCheck);
+                    // Assume payment is completed when payment window is closed
+                    handlePaymentCompletion();
+                }
+            }, 2000);
         });
     });
 
@@ -127,10 +165,13 @@ document.addEventListener('DOMContentLoaded', function() {
         form.style.display = 'none';
         thankYouMessage.style.display = 'block';
         whatsappLink.href = WHATSAPP_GROUP_LINK;
+        
+        // Scroll to thank you message
+        thankYouMessage.scrollIntoView({ behavior: 'smooth' });
     }
 
     // Check for payment completion when page loads
-    if (localStorage.getItem('registrationData')) {
+    if (localStorage.getItem('registrationData') && localStorage.getItem('paymentCompleted')) {
         handlePaymentCompletion();
     }
 }); 
