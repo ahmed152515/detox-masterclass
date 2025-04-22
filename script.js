@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.countdown-timer').innerHTML = '<h3>Class has started!</h3>';
         }
     }
-    
+                            
     // Update countdown every second
     const countdownInterval = setInterval(updateCountdown, 1000);
     updateCountdown(); // Initial call
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // WhatsApp Configuration
     const ADMIN_WHATSAPP = '919519931355'; // Admin number with country code
-    const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/G1l9QpTXXmr9jWdrYi9w5v'; // Actual group link
+    const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/G1l9QpTXXmr9jWdrYi9w5v';
 
     // Format form data for WhatsApp
     function formatDataForWhatsApp(data) {
@@ -89,8 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Check for payment completion
-    function checkPaymentStatus() {
+    // Handle payment completion
+    function handlePaymentCompletion() {
         const registrationData = localStorage.getItem('registrationData');
         if (registrationData) {
             const data = JSON.parse(registrationData);
@@ -98,20 +98,39 @@ document.addEventListener('DOMContentLoaded', function() {
             // Send data to admin's WhatsApp
             const formattedMessage = formatDataForWhatsApp(data);
             const adminWhatsAppLink = `https://wa.me/${ADMIN_WHATSAPP}?text=${formattedMessage}`;
+            
+            // Open WhatsApp in new tab
             window.open(adminWhatsAppLink, '_blank');
-
+            
             // Show thank you message and group link
             showThankYouMessage();
+            
+            // Clear stored data
             localStorage.removeItem('registrationData');
         }
     }
 
-    // Check payment status when page loads
-    checkPaymentStatus();
+    // Add click handlers for payment buttons
+    document.querySelectorAll('.pay-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Store payment method in localStorage
+            localStorage.setItem('paymentMethod', this.textContent);
+            // Open payment link
+            window.location.href = this.href;
+            // Set up payment completion check
+            setTimeout(handlePaymentCompletion, 5000); // Check after 5 seconds
+        });
+    });
 
     function showThankYouMessage() {
         form.style.display = 'none';
         thankYouMessage.style.display = 'block';
         whatsappLink.href = WHATSAPP_GROUP_LINK;
+    }
+
+    // Check for payment completion when page loads
+    if (localStorage.getItem('registrationData')) {
+        handlePaymentCompletion();
     }
 }); 
