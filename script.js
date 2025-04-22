@@ -31,8 +31,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const thankYouMessage = document.getElementById('thankYouMessage');
     const whatsappLink = document.getElementById('whatsappLink');
 
-    // Replace with your actual WhatsApp group link
-    const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/your-group-link';
+    // WhatsApp Configuration
+    const ADMIN_WHATSAPP = '919519931355'; // Admin number with country code
+    const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/G1l9QpTXXmr9jWdrYi9w5v'; // Actual group link
+
+    // Format form data for WhatsApp
+    function formatDataForWhatsApp(data) {
+        let message = '🌿 *New Registration Details*\n\n';
+        message += '------------------------\n';
+        message += `*Name:* ${data.fullName}\n`;
+        message += `*Mobile:* ${data.mobile}\n`;
+        message += `*City:* ${data.city}\n`;
+        message += `*Gender:* ${data.gender}\n`;
+        message += `*Age Group:* ${data.ageGroup}\n\n`;
+        
+        message += '*Health Issues:*\n';
+        if (Array.isArray(data.healthIssues)) {
+            data.healthIssues.forEach(issue => {
+                message += `- ${issue}\n`;
+            });
+        }
+        
+        if (data.otherIssues) {
+            message += `\n*Other Issues:*\n${data.otherIssues}\n`;
+        }
+        
+        message += `\n*Source:* ${data.source}\n`;
+        message += '------------------------\n';
+        message += '✅ Payment Completed\n';
+        message += '✅ Added to WhatsApp Group';
+
+        return encodeURIComponent(message);
+    }
 
     // Handle form submission
     form.addEventListener('submit', function(e) {
@@ -61,10 +91,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Check for payment completion
     function checkPaymentStatus() {
-        // In a real implementation, you would check with your backend
-        // For now, we'll assume payment is successful when user returns to the page
         const registrationData = localStorage.getItem('registrationData');
         if (registrationData) {
+            const data = JSON.parse(registrationData);
+            
+            // Send data to admin's WhatsApp
+            const formattedMessage = formatDataForWhatsApp(data);
+            const adminWhatsAppLink = `https://wa.me/${ADMIN_WHATSAPP}?text=${formattedMessage}`;
+            window.open(adminWhatsAppLink, '_blank');
+
+            // Show thank you message and group link
             showThankYouMessage();
             localStorage.removeItem('registrationData');
         }
