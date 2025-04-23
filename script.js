@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const thankYouMessage = document.getElementById('thankYouMessage');
     const whatsappLink = document.getElementById('whatsappLink');
     const submitBtn = document.getElementById('submitBtn');
+    const paymentSection = document.getElementById('paymentSection');
 
     // WhatsApp Configuration
     const ADMIN_WHATSAPP = '919519931355'; // Admin number with country code
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if payment is completed
         if (!localStorage.getItem('paymentCompleted')) {
             // Show payment section
-            document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth' });
+            paymentSection.scrollIntoView({ behavior: 'smooth' });
             
             // Show payment required message
             const paymentMessage = document.createElement('div');
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Add the message after payment section
-            document.getElementById('paymentSection').appendChild(paymentMessage);
+            paymentSection.appendChild(paymentMessage);
             return;
         }
 
@@ -104,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Store form data in localStorage for after payment
+        // Store form data in localStorage
         localStorage.setItem('registrationData', JSON.stringify(data));
 
         // Show thank you message and group link
@@ -163,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showThankYouMessage() {
         form.style.display = 'none';
+        paymentSection.style.display = 'none';
         thankYouMessage.style.display = 'block';
         whatsappLink.href = WHATSAPP_GROUP_LINK;
         
